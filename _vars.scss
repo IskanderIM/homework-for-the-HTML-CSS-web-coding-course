@@ -1,7 +1,9 @@
+@use 'sass:math';
+
 $colorSelectSite: #F16D7F;
 $widthSite: 1140px;
 $backBlock: #222;
 $colorText: #000000;
 $gapGrid: 30px;
-$thirdSite: ($widthSite - $gapGrid * 2) / 3;
+$thirdSite: math.div($widthSite - $gapGrid * 2, 3);
 $widthBurgerMenu: 232px;
