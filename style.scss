@@ -948,6 +948,7 @@ summary::-webkit-details-marker {
       -webkit-appearance: none;
     }
     input[type="number"] {
+      appearance: textfield;
       -moz-appearance: textfield;
     }
     &__box-input-submit {
