@@ -937,6 +937,8 @@ summary::-webkit-details-marker {
   -webkit-appearance: none;
 }
 .cart-section__form-checkout input[type=number] {
+  -webkit-appearance: textfield;
+          appearance: textfield;
   -moz-appearance: textfield;
 }
 .cart-section__form-checkout__box-input-submit {
