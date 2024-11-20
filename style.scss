@@ -1,4 +1,37 @@
 @import 'vars';
+@-webkit-keyframes scale-in-tl {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+      -webkit-transform-origin: 0% 0%;
+              transform-origin: 0% 0%;
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-transform-origin: 0% 0%;
+              transform-origin: 0% 0%;
+      opacity: 1;
+    }
+  }
+  @keyframes scale-in-tl {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+      -webkit-transform-origin: 0% 0%;
+              transform-origin: 0% 0%;
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-transform-origin: 0% 0%;
+              transform-origin: 0% 0%;
+      opacity: 1;
+    }
+  }
+  
 
 * {
     margin: 0;
@@ -30,13 +63,6 @@ p {
 }
 li {
     list-style-type: none;
-}
-a {
-    text-decoration:none;
-    // transition: all 0.5s;
-}
-button {
-    // transition: all 0.5s;
 }
 summary {
     display: block;
@@ -71,6 +97,8 @@ display: none;
     height: 75px;
     background-color: #222222;
     align-content: center;
+    position: relative;
+    z-index: 20;
     &__left {
         display: flex;
         gap: 41px;
@@ -95,39 +123,47 @@ display: none;
     }
 }
 .burger {
-    &__icon:focus {
-        transform: rotateX(90deg);
+    svg {
+        transition: transform 0.25s;
     }
-    &:focus:before {
-        content: 'X';
-        font-size: 40px;
-        color: $colorSelectSite;
-        line-height: 32px;
-    }
-    &:focus .burger__icon {
-        display: none;
-    }    
-    &:focus .burger-menu {   
+    &__checkbox {
         position: absolute;
-        top: 53px;
-        background: #FFFFFF;
-        box-shadow: 6px 4px 35px 0px #00000036;
-        display: flex;
-        flex-direction: column;
-        width: 232px;
-        padding: 32px;
-        left: -50px;
-        z-index: 2;
-        opacity: 1;
-    }
-    &:active .burger-menu {
-        display: block; 
+        left: -9999999px;
+        visibility: hidden;
+        &:checked ~ .burger-menu {
+            top: 75px;
+            -webkit-animation: scale-in-tl 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-in-tl 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+        &:checked ~ .burger {
+            path:nth-of-type(1){
+                transform: rotate(45deg);
+                transform-origin: 3px 6px;
+            }
+            path:nth-of-type(2){
+                display: none;
+            }
+            path:nth-of-type(3){
+                transform: rotate(-45deg);
+                transform-origin: 3px 18px;
+            }
+            path {
+                fill: $colorSelectSite;
+            }
+        }
     }
 }
 .burger-menu {
-    display: none; 
-    opacity: 0;
-    transition: all 0.3s;
+    right: 0px;
+    display: block;
+    position: absolute;
+    top: -999px;
+    background: #FFFFFF;
+    box-shadow: 6px 4px 35px 0px #00000036;
+    max-width: 232px;
+    width: 75%;
+    padding: 32px;
+
     &__title {
         font-family: "Lato";
         font-size: 14px;
@@ -325,7 +361,6 @@ display: none;
     &-hover {
         display: none; 
         transition: all 0.5s;
-        /* -webkit-transition: all 1s linear; */
         position: absolute;
         background: #3A3838DB;
         display: flex!important;
@@ -1036,7 +1071,6 @@ display: none;
     justify-content: space-between;
     margin-top: 64px;
     margin-bottom: 96px;
-    // gap: 128px;
     &__left {
         width: 360px;
     }
@@ -1157,7 +1191,6 @@ display: none;
         font-size: 18px;
         font-weight: 300;
         line-height: 22px;
-        letter-spacing: 0%;
         text-align: left;
     }
     &__description-text {
@@ -1167,7 +1200,6 @@ display: none;
         font-size: 14px;
         font-weight: 300;
         line-height: 17px;
-        letter-spacing: 0%;
         text-align: center;
         margin: 48px 0 32px;
     }
@@ -1177,7 +1209,6 @@ display: none;
         font-size: 24px;
         font-weight: 300;
         line-height: 29px;
-        letter-spacing: 0%;
         text-align: left;
     }
     &__divider-grey {
